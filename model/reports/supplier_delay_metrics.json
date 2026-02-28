@@ -1,0 +1,11 @@
+{
+    "model": "RandomForestClassifier",
+    "n_estimators": 200,
+    "max_depth": 10,
+    "test_accuracy": 0.9,
+    "cv_accuracy_mean": 0.8905000000000001,
+    "num_records": 2000,
+    "num_features": 7,
+    "num_delayed": 193,
+    "num_on_time": 1807
+}

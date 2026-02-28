@@ -1,0 +1,4 @@
+Supplier delay expected by 2 days
+Machine maintenance scheduled
+Overtime allowed for next week
+Capacity reduced due to energy limits

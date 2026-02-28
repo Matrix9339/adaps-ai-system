@@ -1,0 +1,12 @@
+{
+    "model": "IsolationForest",
+    "contamination": 0.05,
+    "accuracy_agreement_with_statistical_baseline": 0.948361310951239,
+    "cv_anomaly_rate": 0.07332053742802302,
+    "baseline_agreement": 0.948361310951239,
+    "mean_score": 0.09991438736151854,
+    "min_score": -0.1589773573629163,
+    "max_score": 0.169623338943184,
+    "num_records": 6255,
+    "num_anomalies": 313
+}

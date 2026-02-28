@@ -1,0 +1,83 @@
+{
+    "model_name": "XGBoost_Machine_Failure",
+    "timestamp": "2026-01-31 23:14:12",
+    "test_accuracy": 0.9885,
+    "roc_auc": 0.9808184143222507,
+    "num_samples": 10000,
+    "num_features": 8,
+    "top_features": [
+        {
+            "Feature": "Temp_Diff",
+            "Importance": 0.23468585312366486
+        },
+        {
+            "Feature": "Rotational speed rpm",
+            "Importance": 0.19930090010166168
+        },
+        {
+            "Feature": "Power",
+            "Importance": 0.15941166877746582
+        },
+        {
+            "Feature": "Torque Nm",
+            "Importance": 0.1359679400920868
+        },
+        {
+            "Feature": "Tool wear min",
+            "Importance": 0.13281626999378204
+        },
+        {
+            "Feature": "Air temperature K",
+            "Importance": 0.07684016227722168
+        },
+        {
+            "Feature": "Type",
+            "Importance": 0.031983841210603714
+        },
+        {
+            "Feature": "Process temperature K",
+            "Importance": 0.028993330895900726
+        }
+    ],
+    "model_parameters": {
+        "objective": "binary:logistic",
+        "base_score": null,
+        "booster": null,
+        "callbacks": null,
+        "colsample_bylevel": null,
+        "colsample_bynode": null,
+        "colsample_bytree": 0.85,
+        "device": null,
+        "early_stopping_rounds": null,
+        "enable_categorical": false,
+        "eval_metric": "logloss",
+        "feature_types": null,
+        "gamma": 1.0,
+        "grow_policy": null,
+        "importance_type": null,
+        "interaction_constraints": null,
+        "learning_rate": 0.05,
+        "max_bin": null,
+        "max_cat_threshold": null,
+        "max_cat_to_onehot": null,
+        "max_delta_step": null,
+        "max_depth": 4,
+        "max_leaves": null,
+        "min_child_weight": 5,
+        "missing": NaN,
+        "monotone_constraints": null,
+        "multi_strategy": null,
+        "n_estimators": 150,
+        "n_jobs": null,
+        "num_parallel_tree": null,
+        "random_state": 42,
+        "reg_alpha": 0.3,
+        "reg_lambda": 1.0,
+        "sampling_method": null,
+        "scale_pos_weight": null,
+        "subsample": 0.85,
+        "tree_method": null,
+        "validate_parameters": null,
+        "verbosity": null
+    }
+}
