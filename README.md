@@ -1,14 +1,14 @@
-##ADAPS – Autonomous Disruption-Aware Production Planning System
+## ADAPS – Autonomous Disruption-Aware Production Planning System
 
 ADAPS is an AI-powered production planning and intelligent decision support system designed to predict operational disruptions and assist in optimizing production workflows. The system uses machine learning and intelligent analysis to identify risks, improve efficiency, and support proactive planning in production and supply chain environments.
 
-##Overview
+## Overview
 
 Production and supply chain operations are often affected by disruptions such as delays, demand changes, and operational inefficiencies. ADAPS addresses this challenge by building an intelligent system capable of predicting disruptions and providing decision support to improve planning and operational efficiency.
 
 This project demonstrates the real-world application of Artificial Intelligence in intelligent production planning systems.
 
-Key Features
+## Key Features
 
 Predicts operational disruptions using machine learning
 
@@ -30,7 +30,7 @@ Decision Support Module – Provides intelligent planning insights
 
 Output Module – Displays predictions and results
 
-Project Structure
+## Project Structure
 
 adaps-ai-system/
 │
@@ -40,7 +40,7 @@ adaps-ai-system/
 ├── requirements.txt
 ├── README.md
 
-Technologies Used
+## Technologies Used
 
 Artificial Intelligence
 
@@ -60,7 +60,7 @@ Intelligent decision support systems
 
 Industrial automation
 
-Author
+## Author
 
 Himanshu Singh
 GenAI Engineer | Machine Learning Engineer | Software Engineer
@@ -71,6 +71,6 @@ LinkedIn: https://linkedin.com/in/himanshu-singh-15282a222/
 
 Portfolio: https://matrix9339.github.io/Portfolio
 
-Project Status
+## Project Status
 
 Active development – Intelligent prediction and planning system.
