@@ -1,5 +1,3 @@
-# core/orchestrator.py
-
 import json
 import datetime
 import os
@@ -17,31 +15,21 @@ from model.model_loader import (
     predict_logistics_delay
 )
 
-# -------------------------------------------------
-# Ensure log directory exists
-# -------------------------------------------------
+
 os.makedirs("logs", exist_ok=True)
 
 
 def run_autonomous_planning(input_data):
     new_plans = []
 
-    # -------------------------------------------------
-    # Phase 1: Independent planning per run
-    # -------------------------------------------------
+    
     for run in input_data["production_runs"]:
 
-        # -------------------------------
-        # Predict risks (STANDARDIZED)
-        # -------------------------------
         machine_risk = predict_machine_failure(run)
         supplier_delay_days, supplier_risk = predict_supplier_delay(run)
         demand_spike, demand_risk = predict_demand_spike(run)
         logistics_risk = predict_logistics_delay(run)
 
-        # -------------------------------
-        # Fuse risks
-        # -------------------------------
         risks = fuse_risks(
             machine_risk,
             supplier_risk,
@@ -49,34 +37,23 @@ def run_autonomous_planning(input_data):
             logistics_risk
         )
 
-        # -------------------------------
-        # Extract & normalize constraints
-        # -------------------------------
         raw_constraints = extract_constraints(input_data["messages"])
         constraints = normalize_constraints(raw_constraints)
 
-        # -------------------------------
-        # Loss before optimization
-        # -------------------------------
+
         loss_before = compute_loss(run, risks, constraints)
 
-        # -------------------------------
-        # Generate optimized plan
-        # -------------------------------
+
         new_plan = generate_optimized_plan(
             current_plan=run,
             risks=risks,
             constraints=constraints
         )
 
-        # -------------------------------
-        # Loss after optimization
-        # -------------------------------
+
         loss_after = compute_loss(new_plan, risks, constraints)
 
-        # -------------------------------
-        # Attach risk metadata (CRITICAL)
-        # -------------------------------
+
         new_plan.update({
             "machine_risk": machine_risk,
             "supplier_delay_days": supplier_delay_days,
@@ -91,9 +68,7 @@ def run_autonomous_planning(input_data):
 
         new_plans.append(new_plan)
 
-    # -------------------------------------------------
-    # Phase 2: Limit SPEED UP actions
-    # -------------------------------------------------
+
     MAX_SPEED_UP = 2
 
     sorted_by_priority = sorted(
@@ -111,9 +86,7 @@ def run_autonomous_planning(input_data):
             else:
                 plan["action"] = "NORMAL"
 
-    # -------------------------------------------------
-    # Phase 3: Audit logging
-    # -------------------------------------------------
+
     for plan in new_plans:
         log_decision(
             plan["loss_before"],

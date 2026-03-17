@@ -1,10 +1,4 @@
-# core/loss_function.py
-
 def compute_loss(plan, risks, constraints):
-
-    # -------------------------------
-    # Ensure unmet_demand exists
-    # -------------------------------
     if "unmet_demand" not in plan:
         unmet_demand = max(
             0,

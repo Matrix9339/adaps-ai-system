@@ -4,9 +4,6 @@ import pandas as pd
 from core.orchestrator import run_autonomous_planning
 
 
-# -------------------------------------------------
-# LLM Explanation Helper
-# -------------------------------------------------
 def llm_explain_decision(plan: dict) -> str:
     action = plan.get("action")
     run_id = plan.get("run_id")
@@ -64,9 +61,7 @@ def llm_explain_decision(plan: dict) -> str:
 
 
 
-# -------------------------------------------------
-# Page config
-# -------------------------------------------------
+
 st.set_page_config(
     page_title="Autonomous Production Planning System",
     layout="wide"
@@ -75,9 +70,7 @@ st.set_page_config(
 st.title("Autonomous Production Planning Control System")
 st.caption("Multi-run, AI-driven, loss-minimizing autonomous planner")
 
-# -------------------------------------------------
-# Load data
-# -------------------------------------------------
+
 with open("dataset/current_plan.json") as f:
     plan = json.load(f)
 
@@ -89,27 +82,21 @@ input_data = {
     "messages": messages
 }
 
-# -------------------------------------------------
-# Schema validation
-# -------------------------------------------------
+
 for run in input_data["production_runs"]:
     if "type" not in run or run["type"] not in ["L", "M", "H"]:
         run["type"] = "M"
 
 runs_df = pd.DataFrame(input_data["production_runs"])
 
-# -------------------------------------------------
-# Sidebar – System Status
-# -------------------------------------------------
+
 st.sidebar.header("System Status")
 st.sidebar.success("Autonomous Mode: ENABLED")
 st.sidebar.info("Human Approval: NOT REQUIRED")
 
 st.sidebar.divider()
 
-# -------------------------------------------------
-# Sidebar – Run Summary
-# -------------------------------------------------
+
 st.sidebar.subheader("Production Run Summary")
 st.sidebar.metric("Total Production Runs", len(runs_df))
 
@@ -118,22 +105,16 @@ type_counts = runs_df["type"].value_counts()
 for t in ["L", "M", "H"]:
     st.sidebar.write(f"• Type {t}: {type_counts.get(t, 0)}")
 
-# -------------------------------------------------
-# Main – Current Runs
-# -------------------------------------------------
+
 st.subheader("Current Production Runs")
 st.dataframe(runs_df, use_container_width=True)
 
-# -------------------------------------------------
-# Messages
-# -------------------------------------------------
+
 st.subheader("Operational Messages (Constraints)")
 for msg in messages:
     st.write(f"• {msg.strip()}")
 
-# -------------------------------------------------
-# Run Planner
-# -------------------------------------------------
+
 st.subheader("Autonomous Planning Engine")
 
 updated_plans = None
@@ -159,9 +140,7 @@ if st.button("Run Autonomous Planner"):
     for action, count in actions_df["action"].value_counts().items():
         st.sidebar.write(f"• {action}: {count}")
 
-    # -------------------------------------------------
-    # Updated Plans + LLM Explanation Panel
-    # -------------------------------------------------
+    
     st.subheader("Updated Production Plans")
 
     action_color = {
@@ -182,13 +161,11 @@ if st.button("Run Autonomous Planner"):
 
         st.dataframe(pd.DataFrame([plan]), use_container_width=True)
 
-        # 🔍 LLM EXPLANATION PANEL (THIS WAS MISSING)
+        # LLM EXPLANATION PANEL
         with st.expander("Why this decision? (LLM Explanation)"):
             st.write(llm_explain_decision(plan))
 
-    # -------------------------------------------------
-    # Summary
-    # -------------------------------------------------
+    
     st.subheader("Autonomous Decisions Summary")
     st.markdown("""
     - Production runs are sorted by **priority**
@@ -197,9 +174,7 @@ if st.button("Run Autonomous Planner"):
     - Decisions minimize **overall operational loss**
     """)
 
-# -------------------------------------------------
-# Audit Log
-# -------------------------------------------------
+
 st.subheader("Autonomous Decision Log")
 
 try:
